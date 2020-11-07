@@ -9,5 +9,8 @@
         <module name="AnkiCsvBuilder" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AnkiCsvBuilder" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

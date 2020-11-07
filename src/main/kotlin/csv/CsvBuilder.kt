@@ -1,9 +1,12 @@
+package csv
+
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
 import java.io.File
 import java.io.FileWriter
 
-fun main() {
+// TODO: Probably need to take the file as an arg
+fun buildCsvFromLines() {
     print("File path: ")
     val filePath = readLine()!!
     val outputPath = filePath.substring(0, filePath.indexOfLast { it == '\\' })
@@ -11,7 +14,7 @@ fun main() {
 
     val cards = mutableListOf<Card>()
     var card: Card? = null
-    File(filePath).forEachLine {line ->
+    File(filePath).forEachLine { line ->
         if (line.isBlank() && card != null) {
             cards.add(card!!)
             card = null
@@ -30,6 +33,11 @@ fun main() {
     card?.let { cards.add(it) }
 
     toCsvFile(cards, outputPath)
+}
+
+// TODO: Probably need to take the file as an arg
+fun buildCsvFromVocabularyWords() {
+    // TODO
 }
 
 fun toCsvFile(cards: List<Card>, outputPath: String) {
