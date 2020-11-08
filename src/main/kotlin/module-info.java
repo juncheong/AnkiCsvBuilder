@@ -5,4 +5,5 @@ module ApplicationModule {
     requires kotlin.stdlib;
     requires commons.csv;
     opens ui;
+    opens app;
 }

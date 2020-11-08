@@ -1,9 +1,12 @@
-package csv
+package controller
 
-import org.apache.commons.csv.CSVFormat
-import org.apache.commons.csv.CSVPrinter
+import model.Card
+import tornadofx.*
+import util.toCsvFile
 import java.io.File
-import java.io.FileWriter
+
+class TranslatedLinesController: Controller() {
+}
 
 // TODO: Probably need to take the file as an arg
 fun buildCsvFromLines() {
@@ -33,17 +36,4 @@ fun buildCsvFromLines() {
     card?.let { cards.add(it) }
 
     toCsvFile(cards, outputPath)
-}
-
-// TODO: Probably need to take the file as an arg
-fun buildCsvFromVocabularyWords() {
-    // TODO
-}
-
-fun toCsvFile(cards: List<Card>, outputPath: String) {
-    CSVPrinter(FileWriter("$outputPath\\output.csv"), CSVFormat.DEFAULT).use { printer ->
-        cards.forEach { card ->
-            printer.printRecord(card.front, card.back)
-        }
-    }
 }

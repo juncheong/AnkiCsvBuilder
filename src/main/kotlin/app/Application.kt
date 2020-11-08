@@ -1,7 +1,7 @@
-package ui
+package app
 
-import tornadofx.App
-import tornadofx.launch
+import tornadofx.*
+import ui.MainView
 
 class Application : App(MainView::class)
 
