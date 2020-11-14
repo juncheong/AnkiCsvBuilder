@@ -2,6 +2,7 @@ package ui
 
 import controller.TranslatedLinesController
 import controller.VocabWordsController
+import domain.FileType
 import domain.Language
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
@@ -25,8 +26,6 @@ import java.io.File
 
 class MainView : View() {
 
-    private val LINES = "Lines"
-    private val VOCAB = "Vocab"
     private val SUPPORTED_FILE_TYPES = arrayOf(FileChooser.ExtensionFilter("Text file", "*.txt"))
     private val LANGUAGES: ObservableList<Language> = FXCollections.observableArrayList(listOf(Language.DEUTSCH, Language.SVENSKA))
 
@@ -57,8 +56,8 @@ class MainView : View() {
             }
 
             hbox {
-                radiobutton(LINES, inputFormatToggle)
-                radiobutton(VOCAB, inputFormatToggle)
+                radiobutton(FileType.LINES.toString(), inputFormatToggle)
+                radiobutton(FileType.VOCAB.toString(), inputFormatToggle)
             }
         }
 
@@ -67,8 +66,8 @@ class MainView : View() {
             action {
                 if (file != null && directory != null && languageSelection.selectedItem != null && inputFormatToggle.selectedToggle != null) {
                     val selectedButton: RadioButton = inputFormatToggle.selectedToggle as RadioButton
-                    if (selectedButton.text == LINES) {
-//                        translatedLinesController.buildCsvFromLines(file, directory)
+                    if (FileType.valueOf(selectedButton.text) == FileType.LINES) {
+                        translatedLinesController.buildCsvFromLines(file!!, directory!!, languageSelection.selectedItem!!)
                     } else {
 //                        vocabWordsController.buildCsvFromVocabularyWords(file, directory)
                     }

@@ -1,21 +1,17 @@
 package controller
 
+import domain.FileType
+import domain.Language
 import model.Card
 import tornadofx.Controller
 import util.toCsvFile
 import java.io.File
 
 class TranslatedLinesController: Controller() {
-    // TODO: Probably need to take the file as an arg
-    fun buildCsvFromLines() {
-        print("File path: ")
-        val filePath = readLine()!!
-        val outputPath = filePath.substring(0, filePath.indexOfLast { it == '\\' })
-        println("output path: $outputPath")
-
+    fun buildCsvFromLines(file: File, outputDirectory: String, language: Language) {
         val cards = mutableListOf<Card>()
         var card: Card? = null
-        File(filePath).forEachLine { line ->
+        file.forEachLine { line ->
             if (line.isBlank() && card != null) {
                 cards.add(card!!)
                 card = null
@@ -33,7 +29,7 @@ class TranslatedLinesController: Controller() {
 
         card?.let { cards.add(it) }
 
-        toCsvFile(cards, outputPath)
+        toCsvFile(cards, outputDirectory, FileType.LINES, language)
     }
 }
 

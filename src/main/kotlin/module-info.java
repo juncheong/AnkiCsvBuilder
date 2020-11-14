@@ -6,4 +6,5 @@ module ApplicationModule {
     requires commons.csv;
     opens ui;
     opens app;
+    opens controller;
 }
