@@ -69,7 +69,7 @@ class MainView : View() {
                     if (FileType.valueOf(selectedButton.text) == FileType.LINES) {
                         translatedLinesController.buildCsvFromLines(file!!, directory!!, languageSelection.selectedItem!!)
                     } else {
-//                        vocabWordsController.buildCsvFromVocabularyWords(file, directory)
+                        vocabWordsController.buildCsvFromVocabularyWords(file!!, directory!!, languageSelection.selectedItem!!)
                     }
                 } else {
                     // TODO: Output some kind of error to GUI?

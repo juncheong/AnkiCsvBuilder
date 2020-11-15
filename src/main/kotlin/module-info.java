@@ -4,6 +4,7 @@ module ApplicationModule {
     requires tornadofx;
     requires kotlin.stdlib;
     requires commons.csv;
+    requires java.net.http;
     opens ui;
     opens app;
     opens controller;
