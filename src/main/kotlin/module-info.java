@@ -5,6 +5,7 @@ module ApplicationModule {
     requires kotlin.stdlib;
     requires commons.csv;
     requires java.net.http;
+    requires com.google.gson;
     opens ui;
     opens app;
     opens controller;

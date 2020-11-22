@@ -1,6 +1,6 @@
 package domain
 
-enum class Language(val code: String) {
-    DEUTSCH("DE"),
-    SVENSKA("SV")
+enum class Language(val code: String, val inEnglish: String) {
+    DEUTSCH("DE", "German"),
+    SVENSKA("SV", "Swedish")
 }

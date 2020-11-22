@@ -4,9 +4,10 @@ import domain.FileType
 import domain.Language
 import model.Card
 import service.DictionaryService
-import tornadofx.Controller
+import tornadofx.*
 import util.toCsvFile
 import java.io.File
+
 
 class VocabWordsController: Controller() {
 

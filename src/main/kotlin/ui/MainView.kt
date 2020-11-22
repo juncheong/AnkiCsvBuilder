@@ -10,17 +10,7 @@ import javafx.scene.control.ComboBox
 import javafx.scene.control.RadioButton
 import javafx.scene.control.ToggleGroup
 import javafx.stage.FileChooser
-import tornadofx.View
-import tornadofx.action
-import tornadofx.button
-import tornadofx.chooseFile
-import tornadofx.combobox
-import tornadofx.fieldset
-import tornadofx.form
-import tornadofx.hbox
-import tornadofx.radiobutton
-import tornadofx.selectedItem
-import tornadofx.singleAssign
+import tornadofx.*
 import java.io.File
 
 
