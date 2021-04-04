@@ -55,42 +55,8 @@ class DictionaryService {
     }
 
     private fun getDefinition(word: String, elements: Elements, language: Language): Card? {
-        var i = 0
-        while (i < elements.size && elements[i].id() != language.inEnglish) {
-            i++
-        }
-        i++
         val definitions = StringBuilder()
-        var printSection = true
-        while (i < elements.size && elements[i].tagName() != "h2" && elements[i].tagName() != "h4") {
-
-            val element = elements[i]
-            val elementId = element.id().toLowerCase()
-            val elementTagName = element.tagName()
-
-            if (elementId.startsWith("etymology") ||
-                elementId.startsWith("pronunciation") ||
-                elementId.startsWith("anagrams")) {
-                printSection = false
-            } else if (printSection || elementTagName == "h3") {
-                printSection = true
-                val text = element.ownText()
-
-                if (isValidText(text)) {
-                    if (elementTagName.startsWith("span") && elements[i - 1].tagName() == "h3") {
-                        definitions.appendLine()
-                    }
-                    definitions.appendLine(text)
-                }
-            }
-            i++
-        }
+        definitions.append(elements.html())
         return if (definitions.isBlank()) null else Card(word.replaceFirst(word[0], word[0].toUpperCase()), definitions.toString())
-    }
-
-    private fun isValidText(text: String): Boolean {
-        return text.isNotBlank() &&
-                text.length > 1 &&
-                (text.matches(numRegex) || text.matches(alphaRegex))
     }
 }
