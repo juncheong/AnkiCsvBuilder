@@ -15,14 +15,11 @@ import java.net.http.HttpResponse
 
 class DictionaryService {
 
-    private val numRegex = ".*[0-9].*".toRegex()
-    private val alphaRegex = ".*[a-zA-Z].*".toRegex()
-
     private val httpClient = HttpClient.newBuilder().build()
     private val gson = Gson()
 
     fun translate(word: String, language: Language): Card? {
-        val elements = getElementsFromApi(word)
+        val elements = getFromWiktionaryApi(word)
 
         return when (language) {
             Language.SVENSKA -> {
@@ -36,7 +33,7 @@ class DictionaryService {
         }
     }
 
-    private fun getElementsFromApi(word: String): Elements {
+    private fun getFromWiktionaryApi(word: String): Elements {
         val encodedWord = URLEncoder.encode(word, "UTF-8")
         val request = HttpRequest.newBuilder()
             .uri(URI.create("https://en.wiktionary.org/w/api.php?titles=$encodedWord&action=query&prop=extracts&format=json"))
@@ -54,6 +51,7 @@ class DictionaryService {
         return Jsoup.parse(htmlResponse.toString()).select("*")
     }
 
+    // TODO: perhaps in the future, it might make sense to return to parsing wiktionary data based on the chosen language
     private fun getDefinition(word: String, elements: Elements, language: Language): Card? {
         val definitions = StringBuilder()
         definitions.append(elements.html())

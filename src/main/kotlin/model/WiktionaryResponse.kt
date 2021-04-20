@@ -1,8 +1,10 @@
 package model
 
-data class WiktionaryResponse(var batchComplete: String? = null,
-                              var warnings: Warning? = null,
-                              var query: Query? = null)
+data class WiktionaryResponse(
+    var batchComplete: String? = null,
+    var warnings: Warning? = null,
+    var query: Query? = null
+)
 
 data class Warning(var extracts: Map<String, String>? = null)
 

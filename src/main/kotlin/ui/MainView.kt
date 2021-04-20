@@ -11,6 +11,7 @@ import javafx.scene.control.RadioButton
 import javafx.scene.control.ToggleGroup
 import javafx.stage.FileChooser
 import tornadofx.*
+import util.printToGui
 import java.io.File
 
 
@@ -45,6 +46,8 @@ class MainView : View() {
                 languageSelection = this
             }
 
+            // TODO: Add a field to take the forvo API key - do not allow blank or empty
+
             hbox {
                 radiobutton(FileType.LINES.toString(), inputFormatToggle)
                 radiobutton(FileType.VOCAB.toString(), inputFormatToggle)
@@ -62,8 +65,7 @@ class MainView : View() {
                         vocabWordsController.buildCsvFromVocabularyWords(file!!, directory!!, languageSelection.selectedItem!!)
                     }
                 } else {
-                    // TODO: Output some kind of error to GUI?
-                    println("Something is null")
+                    printToGui("Something is null")
                 }
             }
         }
